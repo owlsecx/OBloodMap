@@ -18,13 +18,18 @@
 
 ## 📌 Overview
 
-OBloodMap is a security and privacy tool from the OwlSec suite.
+OBloodMap helps blue teams find and fix the riskiest attack paths in Active Directory. It loads a BloodHound JSON export or a simple edge CSV, builds a graph and ranks the shortest paths from low-privilege or owned accounts to high-value targets such as Domain Admins and domain controllers. It works fully offline and never touches a live domain.
 
 ---
 
 ## ✨ Features
 
-- Standalone executable, no Python installation needed.
+- Parses BloodHound JSON ({nodes,edges} / {data}) and simple source,edge,target CSV files
+- Ranks shortest attack paths from owned or low-privilege principals to high-value targets
+- Dangerous-ACL findings (GenericAll, WriteDACL, DCSync, AddKeyCredentialLink and more) graded with ATT&CK mapping
+- Graph statistics and an edge-abuse reference catalog
+- Demo graph generator for training and testing
+- Reports in TXT / JSON / Markdown / CSV / SARIF; exits with code 3 on CRITICAL/HIGH findings
 
 ---
 
@@ -38,8 +43,13 @@ OBloodMap is a security and privacy tool from the OwlSec suite.
 ## 🚀 Usage
 
 ```bash
-./OBloodMap
+./OBloodMap                                  # interactive menu
+./OBloodMap --analyze bloodhound.json
+./OBloodMap --paths bloodhound.json
+./OBloodMap --catalog
 ```
+
+Run `./OBloodMap --help` for the full list of options.
 
 ---
 
